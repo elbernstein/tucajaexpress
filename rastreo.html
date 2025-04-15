@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Tu caja Express</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+         .floating-image {
+            position: fixed;
+            top: 150px;
+            left: 20px;
+            z-index: 1000;
+            transition: transform 0.3s ease-out;
+            width: 120px;
+            height: 120px;
+            visibility:hidden;
+            
+        }
+        .svg-container {
+            width: 100%; /* Ancho del contenedor */
+           
+          
+            background-image: url("../cajas.jpg");
+           
+        }
+        #OBJECTS path{
+            cursor: pointer;
+            transform: scale(1.9);
+        }
+       /* order tracking */
+.track_status h4 {
+    background: #28A745;
+    padding: 8px 0;
+    text-align: center;
+    color: #fff;
+}
+
+.track_path {
+    width: 650px;
+    margin: 0 auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    position: relative;
+    margin-top: 32px;
+}
+
+.single_track:nth-child(odd) {
+    -ms-flex-item-align: end;
+        align-self: flex-end;
+}
+
+.single_track {
+    max-width: 290px;
+    padding: 16px;
+    position: relative;
+    background: #fff;
+    border: 1px solid #E9E4E4;
+    margin-bottom: 32px;
+    width: 100%;
+}
+
+.single_track:last-child {
+    margin-bottom: 0;
+}
+
+.single_track:after {
+    content: '';
+    position: absolute;
+    left: -13px;
+    top: 50%;
+    -webkit-transform: translateY(-50%) rotate(45deg);
+        -ms-transform: translateY(-50%) rotate(45deg);
+            transform: translateY(-50%) rotate(45deg);
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-left: 1px solid #E9E4E4;
+    border-bottom: 1px solid #E9E4E4;
+}
+
+.single_track:nth-child(even):after {
+    left: auto;
+    right: -12px;
+    border: none;
+    border-right: 1px solid #E9E4E4;
+    border-top: 1px solid #E9E4E4;
+}
+
+.single_track:before {
+    content: '\f00c';
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    background: #28a745;
+    border-radius: 50%;
+    font-family: 'Line Awesome Free';
+    font-weight: 900;
+    color: #fff;
+    text-align: center;
+    line-height: 26px;
+    left: -48px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+}
+
+.single_track.pending:before {
+    content: '\f12a';
+    background-color: #ffc107;
+}
+
+.single_track:nth-child(even):before {
+    left: auto;
+    right: -48px;
+}
+
+.track_path:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    height: 100%;
+    border-right: 1px dashed #979797;
+    z-index: -1;
+}
+
+    </style>
+    
+</head>
+
+<body>
+<!-- Topbar Start -->
+<div id="app">
+ 
+   <mi_menu></mi_menu>
+  
+
+    
+
+    <!-- Header Start -->
+    <div class="jumbotron jumbotron-fluid mb-5">
+        <div class="container text-center py-5">
+            <h1 class="text-white display-3">Rastrea tu Paquete</h1>
+            <div class="d-inline-flex align-items-center text-white">
+                <p class="m-0"><a class="text-white" href="index.html">Inicio</a></p>
+                <i class="fa fa-circle px-3"></i>
+                <p class="m-0">Rastreo</p>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+
+    <!-- Track Start -->
+    <div class="mt-4 pt-2 track_status">
+        <h4 class="title_3 text-uppercase">Rastreo de tu paquete</h4>
+        <div class="track_path">
+                <div class="single_track">
+                    <h5 class="text_lg">Esta Guia no existe en nuestros registros</h5>
+                    <p class="mb-0 text_md">Revise su documento o su whatsapp para encontrar el numero correcto</p>
+                </div>
+              <!--  <div class="single_track">
+                    <h5 class="text_lg">02. Processing</h5>
+                    <p class="mb-0 text_md">30 january, 2021, 8:37 AM</p>
+                </div>
+                <div class="single_track">
+                    <h5 class="text_lg">03. Shipping</h5>
+                    <p class="mb-0 text_md">30 january, 2021, 8:37 AM</p>
+                </div>
+                <div class="single_track pending">
+                    <h5 class="text_lg">04. delivery</h5>
+                    <p class="mb-0 text_md">30 january, 2021, 8:37 AM</p>
+                </div>-->
+            </div>
+        </div>
+
+    <!-- Track End -->
+
+
+  
+    <footers></footers>
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+ 
+</div>   
+    <!--instalacion de axios y vue -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+ 
+
+    <!-- JavaScript Libraries 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
+
+   
+    <script src="assets/js/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/jquery-ui.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>  
+   
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    
+
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="./js/components/mi_menu.js?v=0.0.29"></script>
+    <script src="./js/components/footers.js?v=0.0.29"></script>
+    <script src="js/app.js"></script> 
+
+
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

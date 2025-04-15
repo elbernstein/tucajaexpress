@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Tu caja Express</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+      #map, #map2, #map3, #map4, #map5, #map6, #map7, #map8, #map9, #map10  {
+      height: 600px;
+      width: 80%;
+      margin: 0 auto; /* Centrar los mapas horizontalmente */
+     
+    }
+    .map-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      
+    }
+        
+       
+    </style>
+    
+</head>
+
+<body>
+<!-- Topbar Start -->
+<div id="app">
+ 
+   <mi_menu></mi_menu>
+   <a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+</div>  
+
+    <!-- Header Start -->
+    <div class="jumbotron jumbotron-fluid mb-5">
+        <div class="container text-center py-5">
+            <h1 class="text-primary mb-4">Nuestras rutas de Recogida</h1>
+            <h1 class="text-white display-3">E.E.U.U</h1>
+            <div class="d-inline-flex align-items-center text-white">
+                <p class="m-0"><a class="text-white" href="index.html">Inicio</a></p>
+                <i class="fa fa-circle px-3"></i>
+                <p class="m-0">Cotiza con Nosotros</p>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+    <div class="map-container"></div>
+        <div class="container text-center py-5">
+            <h1 class="text-primary mb-4">Estado de Florida</h1>
+           
+           
+        </div>
+  
+    <div id="map3"></div>
+
+    <div class="map-container"></div>
+        <div class="container text-center py-5">
+            <h1 class="text-primary mb-4">Estados de Carolina del Norte y Carolina del Sur</h1>
+           
+           
+        </div>
+  
+    <div id="map4"></div>
+
+    <div class="map-container"></div>
+        <div class="container text-center py-5">
+            <h1 class="text-primary mb-4">Estado de Virginia(Ruta #1)</h1>
+           
+           
+        </div>
+  
+    <div id="map"></div>
+
+    <div class="container text-center py-5">
+        <h1 class="text-primary mb-4">Estado de Virginia(Ruta #2)</h1>
+       
+       
+    </div>  
+    <div id="map2"></div>
+
+    </div>
+
+    <div class="container text-center py-5">
+        <h1 class="text-primary mb-4">Estado de Georgia</h1>
+       
+       
+    </div>  
+    <div id="map5"></div>
+
+    <div class="container text-center py-5">
+        <h1 class="text-primary mb-4">Estado de Alabama</h1>
+       
+       
+    </div>  
+    <div id="map6"></div>
+
+    <div class="container text-center py-5">
+        <h1 class="text-primary mb-4">Estado de Tennessee</h1>
+       
+       
+    </div>  
+    <div id="map7"></div>
+
+    <div class="container text-center py-5">
+        <h1 class="text-primary mb-4">Estado de Kentucky</h1>
+       
+       
+    </div>  
+    <div id="map8"></div>
+    <div class="container text-center py-5">
+        <h1 class="text-primary mb-4">Estado de Ohio</h1>
+       
+       
+    </div>  
+    <div id="map9"></div>
+
+    <div class="container text-center py-5">
+        <h1 class="text-primary mb-4">Estado de Indiana</h1>
+       
+       
+    </div>  
+    <div id="map10"></div>
+
+
+    </div>
+
+
+
+    <!-- Back to Top -->
+    
+
+ 
+ 
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script>
+    // Inicializar el mapa
+    var map = L.map('map').setView([37.5407, -77.4360], 8); // Centrando en Richmond, Virginia
+
+    // Agregar la capa de OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Coordenadas de las ciudades
+    var cities = {
+      "Richmond": [37.5407, -77.4360],
+      "Fredericksburg": [38.3032, -77.4605],
+      "Williamsburg": [37.2707, -76.7075],
+      "Newport News": [37.0871, -76.4730],
+      "Norfolk": [36.8508, -76.2859],
+      "Chesapeake": [36.7682, -76.2875],
+      "Virginia Beach": [36.8529, -75.9780],
+      "Arlington": [38.8816, -77.0910],
+      "Hampton": [37.0299, -76.3452]
+    };
+
+    // Agregar marcadores para las ciudades
+    for (var city in cities) {
+      L.marker(cities[city]).addTo(map).bindPopup(city);
+    }
+
+    // Trazar rutas (puedes usar cualquier servicio de enrutamiento como OpenRouteService)
+    // Ejemplo con puntos de ruta estáticos para simplificar:
+    var routeCoordinates = [
+    cities["Arlington"],
+      
+      cities["Fredericksburg"],
+      cities["Richmond"],
+      cities["Williamsburg"],
+      cities["Newport News"],
+      cities["Norfolk"],
+      cities["Chesapeake"],
+      cities["Virginia Beach"],
+     
+      cities["Hampton"]
+    ];
+
+    var route = L.polyline(routeCoordinates, { color: 'blue' }).addTo(map);
+
+    // Ajustar el mapa para mostrar toda la ruta
+    map.fitBounds(route.getBounds());
+
+    var map2 = L.map('map2').setView([37.4138, -79.1422], 8); // Centrando en Lynchburg, Virginia
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map2);
+
+    var cities2 = {
+      "Lynchburg": [37.4138, -79.1422],
+      "Roanoke": [37.2709, -79.9414],
+      "Martinsville": [36.6915, -79.8725],
+      "Danville": [36.5850, -79.3950],
+      "Galax": [36.6612, -80.9237],
+      "Abingdon": [36.7098, -81.9773],
+      "Independence": [36.6229, -81.1537],
+      "Blairs": [36.7235, -79.3842],
+      "Pulaski": [37.0479, -80.7796]
+    };
+
+    for (var city in cities2) {
+      L.marker(cities2[city]).addTo(map2).bindPopup(city);
+    }
+
+    var routeCoordinates2 = [
+      cities2["Lynchburg"],
+      cities2["Roanoke"],
+      cities2["Pulaski"],
+      cities2["Abingdon"],
+      cities2["Independence"],
+      cities2["Galax"],
+      cities2["Martinsville"],
+      cities2["Danville"],
+     
+     
+     
+      cities2["Blairs"]
+      
+    ];
+
+    var route2 = L.polyline(routeCoordinates2, { color: 'green' }).addTo(map2);
+    map2.fitBounds(route2.getBounds());
+
+    var map3 = L.map('map3').setView([27.994402, -81.760254], 6); // Centrando en Florida
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map3);
+
+    var cities3 = {
+      "Miami": [25.7617, -80.1918],
+      "Orlando": [28.5383, -81.3792],
+      "Tampa": [27.9506, -82.4572],
+      "Jacksonville": [30.3322, -81.6557],
+      "Tallahassee": [30.4383, -84.2807],
+      "Fort Lauderdale": [26.1224, -80.1373],
+      "West Palm Beach": [26.7153, -80.0534],
+      "Pensacola": [30.4213, -87.2169],
+      "Gainesville": [29.6516, -82.3248]
+    };
+
+    for (var city in cities3) {
+      L.marker(cities3[city]).addTo(map3).bindPopup(city);
+    }
+
+    map3.fitBounds(L.latLngBounds(Object.values(cities3)));
+
+    // Configuración del cuarto mapa (Carolinas)
+    var map4 = L.map('map4').setView([34.0007, -81.0348], 6); // Centrando en las Carolinas
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map4);
+
+    var cities4 = {
+      "Charlotte": [35.2271, -80.8431],
+      "Raleigh": [35.7796, -78.6382],
+      "Greensboro": [36.0726, -79.7920],
+      "Durham": [35.9940, -78.8986],
+      "Wilmington": [34.2257, -77.9447],
+      "Columbia": [34.0007, -81.0348],
+      "Charleston": [32.7765, -79.9311],
+      "Greenville": [34.8526, -82.3940],
+      "Myrtle Beach": [33.6891, -78.8867]
+    };
+
+    for (var city in cities4) {
+      L.marker(cities4[city]).addTo(map4).bindPopup(city);
+    }
+
+    map4.fitBounds(L.latLngBounds(Object.values(cities4)));
+
+
+
+    // Configuración del quinto mapa (Georgia)
+    var map5 = L.map('map5').setView([32.1656, -82.9001], 7); // Centrando en Georgia
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map5);
+
+    var cities5 = {
+      "Atlanta": [33.7490, -84.3880],
+      "Savannah": [32.0809, -81.0912],
+      "Augusta": [33.4735, -82.0105],
+      "Athens": [33.9519, -83.3576],
+      "Macon": [32.8407, -83.6324],
+      "Columbus": [32.4609, -84.9877],
+      "Albany": [31.5785, -84.1557]
+    };
+
+    for (var city in cities5) {
+      L.marker(cities5[city]).addTo(map5).bindPopup(city);
+    }
+
+    map5.fitBounds(L.latLngBounds(Object.values(cities5)));
+
+    // Configuración del sexto mapa (Alabama)
+    var map6 = L.map('map6').setView([32.3182, -86.9023], 7); // Centrando en Alabama
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map6);
+
+    var cities6 = {
+      "Huntsville": [34.7304, -86.5861],
+      "Gadsden": [34.0143, -86.0066],
+      "Birmingham": [33.5186, -86.8104],
+      "Bessemer": [33.4018, -86.9544],
+      "Albertville": [34.2679, -86.2089],
+      "Fort Payne": [34.4443, -85.7199]
+    };
+
+    for (var city in cities6) {
+      L.marker(cities6[city]).addTo(map6).bindPopup(city);
+    }
+
+    var routeCoordinates6 = [
+      cities6["Huntsville"],
+      cities6["Albertville"],
+      cities6["Fort Payne"],
+      cities6["Gadsden"],
+      cities6["Birmingham"],
+      cities6["Bessemer"]
+     
+     
+    ];
+
+    var route6 = L.polyline(routeCoordinates6, { color: 'purple' }).addTo(map6);
+    map6.fitBounds(route6.getBounds());
+
+    // Configuración del séptimo mapa (Tennessee)
+    var map7 = L.map('map7').setView([35.5175, -86.5804], 5); // Centrando en Tennessee
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map7);
+
+    var cities7 = {
+      "Chattanooga": [35.0456, -85.3097],
+      "Knoxville": [35.9606, -83.9207],
+      "Nashville": [36.1627, -86.7816],
+      "Memphis": [35.1495, -90.0490],
+      "Clarksville": [36.5298, -87.3595],
+      "Murfreesboro": [35.8456, -86.3903]
+    };
+
+    for (var city in cities7) {
+      L.marker(cities7[city]).addTo(map7).bindPopup(city);
+    }
+
+    var routeCoordinates7 = [
+      cities7["Chattanooga"],
+      cities7["Knoxville"],
+      cities7["Nashville"]
+    ];
+
+    var route7 = L.polyline(routeCoordinates7, { color: 'red' }).addTo(map7);
+    map7.fitBounds(route7.getBounds());
+    var map8 = L.map('map8').setView([37.8393, -84.2700], 7); // Centrando en Kentucky
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map8);
+
+    var cities8 = {
+      "Louisville": [38.2527, -85.7585],
+      "Lexington": [38.0406, -84.5037],
+      "Bowling Green": [36.9685, -86.4808],
+      "Owensboro": [37.7719, -87.1112],
+      "Covington": [39.0837, -84.5086],
+      "Richmond": [37.7479, -84.2947]
+    };
+
+    for (var city in cities8) {
+      L.marker(cities8[city]).addTo(map8).bindPopup(city);
+    }
+
+    map8.fitBounds(L.latLngBounds(Object.values(cities8)));
+
+    // Configuración del noveno mapa (Ohio)
+    var map9 = L.map('map9').setView([40.4173, -82.9071], 7); // Centrando en Ohio
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map9);
+
+    var cities9 = {
+      "Columbus": [39.9612, -82.9988],
+      "Cleveland": [41.4993, -81.6944],
+      "Cincinnati": [39.1031, -84.5120],
+      "Toledo": [41.6528, -83.5379],
+      "Akron": [41.0814, -81.5190],
+      "Dayton": [39.7589, -84.1916]
+    };
+
+    for (var city in cities9) {
+      L.marker(cities9[city]).addTo(map9).bindPopup(city);
+    }
+
+    map9.fitBounds(L.latLngBounds(Object.values(cities9)));
+
+    // Configuración del décimo mapa (Indiana)
+    var map10 = L.map('map10').setView([39.7684, -86.1581], 7); // Centrando en Indianapolis, Indiana
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map10);
+
+    var cities10 = {
+      "Indianapolis": [39.7684, -86.1581],
+      "Fort Wayne": [41.0793, -85.1394],
+      "Evansville": [37.9716, -87.5711],
+      "South Bend": [41.6764, -86.2520],
+      "Carmel": [39.9784, -86.1180],
+      "Bloomington": [39.1653, -86.5264]
+    };
+
+    for (var city in cities10) {
+      L.marker(cities10[city]).addTo(map10).bindPopup(city);
+    }
+
+    map10.fitBounds(L.latLngBounds(Object.values(cities10)));
+
+  </script>
+    <!--instalacion de axios y vue -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+ 
+
+    <!-- JavaScript Libraries 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
+
+   
+    <script src="assets/js/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/jquery-ui.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>  
+   
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    
+
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="./js/components/mi_menu.js?v=0.0.29"></script>
+    <script src="./js/components/footers.js?v=0.0.29"></script>
+    <script src="js/app.js"></script> 
+
+
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    
+
+</body>
+
+</html>

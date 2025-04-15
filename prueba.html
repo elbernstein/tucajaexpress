@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa de Virginia con Rutas</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <style>
+    #map {
+      height: 600px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script>
+    // Inicializar el mapa
+    var map = L.map('map').setView([37.5407, -77.4360], 8); // Centrando en Richmond, Virginia
+
+    // Agregar la capa de OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Coordenadas de las ciudades
+    var cities = {
+      "Richmond": [37.5407, -77.4360],
+      "Fredericksburg": [38.3032, -77.4605],
+      "Williamsburg": [37.2707, -76.7075],
+      "Newport News": [37.0871, -76.4730],
+      "Norfolk": [36.8508, -76.2859],
+      "Chesapeake": [36.7682, -76.2875],
+      "Virginia Beach": [36.8529, -75.9780],
+      "Arlington": [38.8816, -77.0910],
+      "Hampton": [37.0299, -76.3452]
+    };
+
+    // Agregar marcadores para las ciudades
+    for (var city in cities) {
+      L.marker(cities[city]).addTo(map).bindPopup(city);
+    }
+
+    // Trazar rutas (puedes usar cualquier servicio de enrutamiento como OpenRouteService)
+    // Ejemplo con puntos de ruta estáticos para simplificar:
+    var routeCoordinates = [
+    cities["Arlington"],
+      
+      cities["Fredericksburg"],
+      cities["Richmond"],
+      cities["Williamsburg"],
+      cities["Newport News"],
+      cities["Norfolk"],
+      cities["Chesapeake"],
+      cities["Virginia Beach"],
+     
+      cities["Hampton"]
+    ];
+
+    var route = L.polyline(routeCoordinates, { color: 'blue' }).addTo(map);
+
+    // Ajustar el mapa para mostrar toda la ruta
+    map.fitBounds(route.getBounds());
+  </script>
+</body>
+</html>
